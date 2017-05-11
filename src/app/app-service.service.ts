@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Jsonp, URLSearchParams } from '@angular/http';
+import { Jsonp, URLSearchParams, Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppServiceService {
 
-  constructor(private jsonp: Jsonp) { }
+  constructor(private _http: Http,private jsonp: Jsonp) { }
+
+  getPost() {
+    this._http.get("http://jsonplaceholder.typicode.com/posts");
+  }
+
 
   search (term : string) {
     let url='https://api.spotify.com/v1/search?type=artist&q='+term;
